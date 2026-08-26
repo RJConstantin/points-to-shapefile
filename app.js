@@ -336,7 +336,7 @@
       const blob = result instanceof Blob ? result : new Blob([result], {type:"application/zip"});
       downloadBlob(blob, `${name}.zip`);
       let msg = `${features.length.toLocaleString()} point feature${features.length===1?"":"s"} exported as ${name}.zip using ${crs.label}.`;
-      if (skipped) msg += ` ${skipped.toLocaleString()} row${skipped===1?" was":"s were"} skipped because X or Y was blank or non-numeric.`;
+      if (skipped) msg += ` ${skipped.toLocaleString()} row${skipped===1?" was":"s were"} skipped because X or Y was blank or non numeric.`;
       setStatus(exportStatus, msg, skipped ? "warning" : "success");
     } catch (err) {
       setStatus(exportStatus, `The shapefile could not be created: ${err.message}`, "error");
