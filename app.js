@@ -44,17 +44,38 @@
 
   function populateCRS() {
     crsSelect.innerHTML = "";
+
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Select a coordinate system";
+    placeholder.selected = true;
+    placeholder.disabled = true;
+    crsSelect.appendChild(placeholder);
+
+    const groups = new Map();
     AGIS_CRS.list.forEach(crs => {
+      const groupName = crs.group || "Other coordinate systems";
+      if (!groups.has(groupName)) {
+        const group = document.createElement("optgroup");
+        group.label = groupName;
+        groups.set(groupName, group);
+        crsSelect.appendChild(group);
+      }
+
       const option = document.createElement("option");
       option.value = crs.id;
-      option.textContent = `${crs.label} (${crs.id.replace("EPSG:","EPSG ")})`;
-      if (crs.id === "EPSG:3400") option.selected = true;
-      crsSelect.appendChild(option);
+      option.textContent = `${crs.displayLabel || crs.label} (${crs.id.replace("EPSG:","EPSG ")})`;
+      groups.get(groupName).appendChild(option);
     });
+
     updateCRSNote();
   }
 
   function updateCRSNote() {
+    if (!crsSelect.value) {
+      crsNote.textContent = "Choose the coordinate system that the source coordinates are already in. Use the map above if you are not sure.";
+      return;
+    }
     const crs = AGIS_CRS.get(crsSelect.value);
     crsNote.textContent = `Coordinates will be written exactly as supplied and the shapefile will be defined as ${crs.label}. Units: ${crs.unit}.`;
   }
@@ -312,6 +333,11 @@
       setStatus(exportStatus, "X and Y cannot use the same field.", "error");
       return;
     }
+    if (!crsSelect.value) {
+      setStatus(exportStatus, "Choose a coordinate system before creating the shapefile.", "error");
+      return;
+    }
+
     const keep = selectedFields();
     const dbfMap = makeDbfMap(keep);
     const features = [];
