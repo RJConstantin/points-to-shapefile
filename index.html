@@ -76,40 +76,26 @@
 
       <details class="note" style="margin-top:14px">
         <summary style="cursor:pointer;font-weight:700">Which coordinate system should I select?</summary>
-        <p style="margin:10px 0 8px">Use the projection identified by the source whenever possible. If you are not sure, use the location and coordinate pattern below as a guide.</p>
-        <div class="table-wrap" style="margin-top:8px;max-height:none">
-          <table>
-            <thead>
-              <tr>
-                <th>If your coordinates / points are here and look like this...</th>
-                <th>Select this coordinate system</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Longitude and latitude in degrees. Alberta values are usually X about -120 to -110 and Y about 49 to 60. Use the datum stated by the source.</td>
-                <td><strong>WGS 84 latitude / longitude</strong> or <strong>NAD 1983 latitude / longitude</strong></td>
-              </tr>
-              <tr>
-                <td>Western Alberta, west of about 114°W, with metre coordinates such as X 300000 to 700000 and Y 5400000 to 6700000.</td>
-                <td><strong>NAD 1983 UTM Zone 11N</strong></td>
-              </tr>
-              <tr>
-                <td>Eastern Alberta, east of about 114°W, with metre coordinates such as X 300000 to 700000 and Y 5400000 to 6700000. Fort McMurray and Fort McKay are in this zone.</td>
-                <td><strong>NAD 1983 UTM Zone 12N</strong></td>
-              </tr>
-              <tr>
-                <td>From an Alberta government, forestry or resource workflow specifically identified as 10TM or AEP Forest. The values commonly look like six-digit X and seven-digit Y coordinates, similar to UTM.</td>
-                <td><strong>NAD 1983 10TM AEP Forest (EPSG 3400)</strong></td>
-              </tr>
-              <tr>
-                <td>From an Alberta 3TM dataset. Eastings are generally much smaller than UTM or 10TM and may be near zero or negative. Choose the central meridian that covers the site.</td>
-                <td><strong>3TM 117°W</strong> for western Alberta, <strong>3TM 114°W</strong> for central Alberta, or <strong>3TM 111°W</strong> for eastern Alberta</td>
-              </tr>
-            </tbody>
-          </table>
+        <p style="margin:10px 0 8px">Use this as a quick key. If the source file tells you the projection, use that instead.</p>
+
+        <div style="margin-top:10px;padding:12px 14px;border:1px solid var(--line);border-radius:9px;background:#fff">
+          <p style="margin:0 0 10px"><strong>Do the coordinates look like longitude / latitude?</strong><br>
+          Example: <strong>-113.5, 56.7</strong><br>
+          Select <strong>WGS 84 latitude / longitude</strong> or <strong>NAD 1983 latitude / longitude</strong>, depending on the source.</p>
+
+          <p style="margin:0 0 8px"><strong>Do the coordinates look like Easting / Northing in metres?</strong><br>
+          Example: <strong>473566, 6362909</strong><br>
+          Then use the site location as a clue:</p>
+
+          <ul style="margin:0 0 10px 20px;padding:0;line-height:1.7">
+            <li><strong>Edmonton, Fort McMurray, Fort McKay, Cold Lake or eastern Alberta:</strong> usually <strong>NAD 1983 UTM Zone 12N</strong>.</li>
+            <li><strong>Jasper, Hinton, Grande Prairie or western Alberta:</strong> usually <strong>NAD 1983 UTM Zone 11N</strong>.</li>
+            <li><strong>If the source specifically says 10TM or AEP Forest:</strong> select <strong>NAD 1983 10TM AEP Forest (EPSG 3400)</strong>.</li>
+            <li><strong>If the source specifically says 3TM:</strong> select the matching <strong>3TM 117°W, 114°W or 111°W</strong> system stated by the source.</li>
+          </ul>
+
+          <p style="margin:0"><strong>Note:</strong> north or south of Edmonton does not determine the UTM zone. The UTM 11N / 12N split is east to west at 114°W, which is just west of Edmonton.</p>
         </div>
-        <p style="margin:10px 0 0"><strong>Important:</strong> coordinates such as X 473566 and Y 6362909 could be either UTM or 10TM. If the wrong one is selected, the points can still appear in Alberta but be hundreds of kilometres from the correct location.</p>
       </details>
     </section>
 
