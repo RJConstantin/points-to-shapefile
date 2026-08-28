@@ -281,6 +281,31 @@
     }
   }
 
+  async function applySelectedProjection(zipData, name, wkt) {
+    if (typeof JSZip === "undefined") {
+      throw new Error("The ZIP projection library did not load. Refresh the page and try again.");
+    }
+
+    const sourceBlob = zipData instanceof Blob ? zipData : new Blob([zipData], {type:"application/zip"});
+    const zip = await JSZip.loadAsync(sourceBlob);
+    let prjPaths = Object.keys(zip.files).filter(path => !zip.files[path].dir && /\.prj$/i.test(path));
+
+    if (!prjPaths.length) {
+      const path = `${name}/${name}.prj`;
+      zip.file(path, wkt);
+      prjPaths = [path];
+    } else {
+      prjPaths.forEach(path => zip.file(path, wkt));
+    }
+
+    const writtenWkt = await zip.file(prjPaths[0]).async("string");
+    if (writtenWkt.trim() !== wkt.trim()) {
+      throw new Error("The selected coordinate system could not be written to the projection file.");
+    }
+
+    return zip.generateAsync({type:"blob", compression:"DEFLATE"});
+  }
+
   async function exportShapefile() {
     if (!state.rows.length) return;
     if (xField.value === yField.value) {
@@ -328,12 +353,11 @@
       const fc = {type:"FeatureCollection",features};
       const result = await Promise.resolve(shpwrite.zip(fc, {
         outputType:"blob",
-        prj:crs.wkt,
         folder:name,
         filename:name,
         types:{point:name,polygon:name+"_poly",polyline:name+"_line"}
       }));
-      const blob = result instanceof Blob ? result : new Blob([result], {type:"application/zip"});
+      const blob = await applySelectedProjection(result, name, crs.wkt);
       downloadBlob(blob, `${name}.zip`);
       let msg = `${features.length.toLocaleString()} point feature${features.length===1?"":"s"} exported as ${name}.zip using ${crs.label}.`;
       if (skipped) msg += ` ${skipped.toLocaleString()} row${skipped===1?" was":"s were"} skipped because X or Y was blank or non numeric.`;
