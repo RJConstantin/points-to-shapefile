@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Points to Shapefile | Alberta GIS Tools</title>
-  <link rel="stylesheet" href="tool.css">
+  <link rel="stylesheet" href="tool.css?v=2">
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
   <script src="https://unpkg.com/@mapbox/shp-write@0.4.3/shpwrite.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
@@ -78,33 +78,33 @@
         <summary style="cursor:pointer;font-weight:700">Which coordinate system should I select?</summary>
         <p style="margin:10px 0 8px">Use the projection identified by the source whenever possible. If you are not sure, use the location and coordinate pattern below as a guide.</p>
         <div class="table-wrap" style="margin-top:8px;max-height:none">
-          <table style="table-layout:fixed">
+          <table>
             <thead>
               <tr>
-                <th style="width:62%;white-space:normal;max-width:none">If your coordinates / points are here and look like this...</th>
-                <th style="width:38%;white-space:normal;max-width:none">Select this coordinate system</th>
+                <th>If your coordinates / points are here and look like this...</th>
+                <th>Select this coordinate system</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td style="white-space:normal;max-width:none;overflow:visible">Longitude and latitude in degrees. Alberta values are usually X about -120 to -110 and Y about 49 to 60. Use the datum stated by the source.</td>
-                <td style="white-space:normal;max-width:none;overflow:visible"><strong>WGS 84 latitude / longitude</strong> or <strong>NAD 1983 latitude / longitude</strong></td>
+                <td>Longitude and latitude in degrees. Alberta values are usually X about -120 to -110 and Y about 49 to 60. Use the datum stated by the source.</td>
+                <td><strong>WGS 84 latitude / longitude</strong> or <strong>NAD 1983 latitude / longitude</strong></td>
               </tr>
               <tr>
-                <td style="white-space:normal;max-width:none;overflow:visible">Western Alberta, west of about 114°W, with metre coordinates such as X 300000 to 700000 and Y 5400000 to 6700000.</td>
-                <td style="white-space:normal;max-width:none;overflow:visible"><strong>NAD 1983 UTM Zone 11N</strong></td>
+                <td>Western Alberta, west of about 114°W, with metre coordinates such as X 300000 to 700000 and Y 5400000 to 6700000.</td>
+                <td><strong>NAD 1983 UTM Zone 11N</strong></td>
               </tr>
               <tr>
-                <td style="white-space:normal;max-width:none;overflow:visible">Eastern Alberta, east of about 114°W, with metre coordinates such as X 300000 to 700000 and Y 5400000 to 6700000. Fort McMurray and Fort McKay are in this zone.</td>
-                <td style="white-space:normal;max-width:none;overflow:visible"><strong>NAD 1983 UTM Zone 12N</strong></td>
+                <td>Eastern Alberta, east of about 114°W, with metre coordinates such as X 300000 to 700000 and Y 5400000 to 6700000. Fort McMurray and Fort McKay are in this zone.</td>
+                <td><strong>NAD 1983 UTM Zone 12N</strong></td>
               </tr>
               <tr>
-                <td style="white-space:normal;max-width:none;overflow:visible">From an Alberta government, forestry or resource workflow specifically identified as 10TM or AEP Forest. The values commonly look like six-digit X and seven-digit Y coordinates, similar to UTM.</td>
-                <td style="white-space:normal;max-width:none;overflow:visible"><strong>NAD 1983 10TM AEP Forest (EPSG 3400)</strong></td>
+                <td>From an Alberta government, forestry or resource workflow specifically identified as 10TM or AEP Forest. The values commonly look like six-digit X and seven-digit Y coordinates, similar to UTM.</td>
+                <td><strong>NAD 1983 10TM AEP Forest (EPSG 3400)</strong></td>
               </tr>
               <tr>
-                <td style="white-space:normal;max-width:none;overflow:visible">From an Alberta 3TM dataset. Eastings are generally much smaller than UTM or 10TM and may be near zero or negative. Choose the central meridian that covers the site.</td>
-                <td style="white-space:normal;max-width:none;overflow:visible"><strong>3TM 117°W</strong> for western Alberta, <strong>3TM 114°W</strong> for central Alberta, or <strong>3TM 111°W</strong> for eastern Alberta</td>
+                <td>From an Alberta 3TM dataset. Eastings are generally much smaller than UTM or 10TM and may be near zero or negative. Choose the central meridian that covers the site.</td>
+                <td><strong>3TM 117°W</strong> for western Alberta, <strong>3TM 114°W</strong> for central Alberta, or <strong>3TM 111°W</strong> for eastern Alberta</td>
               </tr>
             </tbody>
           </table>
