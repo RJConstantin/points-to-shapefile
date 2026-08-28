@@ -8,7 +8,7 @@
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
   <script src="https://unpkg.com/@mapbox/shp-write@0.4.3/shpwrite.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-  <script src="crs.js"></script>
+  <script src="crs.js?v=2"></script>
 </head>
 <body>
   <header class="topbar">
@@ -102,8 +102,10 @@
                 <text x="301" y="334" text-anchor="middle" font-size="12" font-weight="700" fill="#2463a0">114°W boundary</text>
 
                 <circle cx="105" cy="105" r="5" fill="#172229"/><text x="116" y="109" font-size="12" fill="#172229">Grande Prairie</text>
+                <circle cx="237" cy="161" r="5" fill="#172229"/><text x="226" y="151" text-anchor="end" font-size="12" fill="#172229">Slave Lake</text>
                 <circle cx="116" cy="223" r="5" fill="#172229"/><text x="127" y="227" font-size="12" fill="#172229">Hinton</text>
                 <circle cx="92" cy="260" r="5" fill="#172229"/><text x="103" y="264" font-size="12" fill="#172229">Jasper</text>
+                <circle cx="282" cy="286" r="5" fill="#172229"/><text x="271" y="277" text-anchor="end" font-size="12" fill="#172229">Calgary</text>
 
                 <circle cx="334" cy="224" r="5" fill="#172229"/><text x="345" y="228" font-size="12" fill="#172229">Edmonton</text>
                 <circle cx="408" cy="108" r="5" fill="#172229"/><text x="397" y="95" text-anchor="end" font-size="12" fill="#172229">Fort McMurray</text>
@@ -112,11 +114,11 @@
 
                 <text x="260" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#52656e">Simplified Alberta UTM guide</text>
               </svg>
-              <p style="margin:6px 0 0;font-size:10px;color:#7a8792">Simplified guide, not to scale. North or south of Edmonton does not change the UTM zone. The split is east to west.</p>
+              <p style="margin:6px 0 0;font-size:10px;color:#7a8792">Simplified guide, not to scale. The 114°W line separates UTM Zone 11N and UTM Zone 12N.</p>
             </div>
 
             <div style="font-size:12px;line-height:1.55">
-              <p style="margin:0 0 10px"><strong>If your site is on the west side of Alberta</strong><br>Examples: Grande Prairie, Hinton, Jasper<br>Select <strong>NAD 1983 UTM Zone 11N</strong>.</p>
+              <p style="margin:0 0 10px"><strong>If your site is on the west side of Alberta</strong><br>Examples: Calgary, Slave Lake, Grande Prairie, Hinton, Jasper<br>Select <strong>NAD 1983 UTM Zone 11N</strong>.</p>
               <p style="margin:0 0 10px"><strong>If your site is on the east side of Alberta</strong><br>Examples: Edmonton, Fort McMurray, Fort McKay, Cold Lake<br>Select <strong>NAD 1983 UTM Zone 12N</strong>.</p>
               <div style="padding:10px 11px;border-radius:8px;background:#fff8e8;border:1px solid #ead9ac;color:#6e571b">
                 <strong>Use the source name when it is provided.</strong><br>
@@ -173,6 +175,6 @@
   </main>
 
   <footer class="footer">Alberta GIS Tools · Points to Shapefile</footer>
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
