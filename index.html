@@ -75,26 +75,55 @@
       <div id="input-status" class="status">No point data loaded.</div>
 
       <details class="note" style="margin-top:14px">
-        <summary style="cursor:pointer;font-weight:700">Which coordinate system should I select?</summary>
-        <p style="margin:10px 0 8px">Use this as a quick key. If the source file tells you the projection, use that instead.</p>
+        <summary style="cursor:pointer;font-weight:700">Not sure which coordinate system to choose?</summary>
+        <div style="margin-top:12px;padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff">
+          <p style="margin:0 0 12px;font-size:12px"><strong>First, look at the coordinate numbers.</strong></p>
 
-        <div style="margin-top:10px;padding:12px 14px;border:1px solid var(--line);border-radius:9px;background:#fff">
-          <p style="margin:0 0 10px"><strong>Do the coordinates look like longitude / latitude?</strong><br>
-          Example: <strong>-113.5, 56.7</strong><br>
-          Select <strong>WGS 84 latitude / longitude</strong> or <strong>NAD 1983 latitude / longitude</strong>, depending on the source.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:14px">
+            <div style="padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:#f8fbfd">
+              <strong style="display:block;margin-bottom:4px">Looks like: -113.5, 56.7</strong>
+              These are longitude / latitude values. Select <strong>WGS 84 latitude / longitude</strong> or <strong>NAD 1983 latitude / longitude</strong> based on the source.
+            </div>
+            <div style="padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:#f8fbfd">
+              <strong style="display:block;margin-bottom:4px">Looks like: 473566, 6362909</strong>
+              These are metre-based coordinates. If the source says <strong>UTM</strong>, use the Alberta map below.
+            </div>
+          </div>
 
-          <p style="margin:0 0 8px"><strong>Do the coordinates look like Easting / Northing in metres?</strong><br>
-          Example: <strong>473566, 6362909</strong><br>
-          Then use the site location as a clue:</p>
+          <div style="display:grid;grid-template-columns:minmax(300px,520px) minmax(220px,1fr);gap:18px;align-items:start">
+            <div>
+              <svg viewBox="0 0 520 350" role="img" aria-label="Simplified Alberta guide showing UTM Zone 11N in western Alberta and UTM Zone 12N in eastern Alberta" style="width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px;background:#f8fbfd">
+                <rect x="55" y="30" width="410" height="285" rx="8" fill="#ffffff" stroke="#9fb3c2" stroke-width="2"/>
+                <rect x="55" y="30" width="246" height="285" rx="8" fill="#edf4fa"/>
+                <rect x="301" y="30" width="164" height="285" rx="8" fill="#f3f6f5"/>
+                <line x1="301" y1="30" x2="301" y2="315" stroke="#2463a0" stroke-width="3" stroke-dasharray="8 6"/>
+                <text x="178" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#174a78">UTM Zone 11N</text>
+                <text x="383" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#36576f">UTM Zone 12N</text>
+                <text x="301" y="334" text-anchor="middle" font-size="12" font-weight="700" fill="#2463a0">114°W boundary</text>
 
-          <ul style="margin:0 0 10px 20px;padding:0;line-height:1.7">
-            <li><strong>Edmonton, Fort McMurray, Fort McKay, Cold Lake or eastern Alberta:</strong> usually <strong>NAD 1983 UTM Zone 12N</strong>.</li>
-            <li><strong>Jasper, Hinton, Grande Prairie or western Alberta:</strong> usually <strong>NAD 1983 UTM Zone 11N</strong>.</li>
-            <li><strong>If the source specifically says 10TM or AEP Forest:</strong> select <strong>NAD 1983 10TM AEP Forest (EPSG 3400)</strong>.</li>
-            <li><strong>If the source specifically says 3TM:</strong> select the matching <strong>3TM 117°W, 114°W or 111°W</strong> system stated by the source.</li>
-          </ul>
+                <circle cx="105" cy="105" r="5" fill="#172229"/><text x="116" y="109" font-size="12" fill="#172229">Grande Prairie</text>
+                <circle cx="116" cy="223" r="5" fill="#172229"/><text x="127" y="227" font-size="12" fill="#172229">Hinton</text>
+                <circle cx="92" cy="260" r="5" fill="#172229"/><text x="103" y="264" font-size="12" fill="#172229">Jasper</text>
 
-          <p style="margin:0"><strong>Note:</strong> north or south of Edmonton does not determine the UTM zone. The UTM 11N / 12N split is east to west at 114°W, which is just west of Edmonton.</p>
+                <circle cx="334" cy="224" r="5" fill="#172229"/><text x="345" y="228" font-size="12" fill="#172229">Edmonton</text>
+                <circle cx="408" cy="108" r="5" fill="#172229"/><text x="397" y="95" text-anchor="end" font-size="12" fill="#172229">Fort McMurray</text>
+                <circle cx="414" cy="76" r="5" fill="#172229"/><text x="403" y="67" text-anchor="end" font-size="12" fill="#172229">Fort McKay</text>
+                <circle cx="441" cy="231" r="5" fill="#172229"/><text x="430" y="249" text-anchor="end" font-size="12" fill="#172229">Cold Lake</text>
+
+                <text x="260" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#52656e">Simplified Alberta UTM guide</text>
+              </svg>
+              <p style="margin:6px 0 0;font-size:10px;color:#7a8792">Simplified guide, not to scale. North or south of Edmonton does not change the UTM zone. The split is east to west.</p>
+            </div>
+
+            <div style="font-size:12px;line-height:1.55">
+              <p style="margin:0 0 10px"><strong>If your site is on the west side of Alberta</strong><br>Examples: Grande Prairie, Hinton, Jasper<br>Select <strong>NAD 1983 UTM Zone 11N</strong>.</p>
+              <p style="margin:0 0 10px"><strong>If your site is on the east side of Alberta</strong><br>Examples: Edmonton, Fort McMurray, Fort McKay, Cold Lake<br>Select <strong>NAD 1983 UTM Zone 12N</strong>.</p>
+              <div style="padding:10px 11px;border-radius:8px;background:#fff8e8;border:1px solid #ead9ac;color:#6e571b">
+                <strong>Use the source name when it is provided.</strong><br>
+                If it specifically says <strong>10TM / AEP Forest</strong>, select NAD 1983 10TM AEP Forest. If it says <strong>3TM</strong>, select the matching 3TM option instead of using the UTM map.
+              </div>
+            </div>
+          </div>
         </div>
       </details>
     </section>
