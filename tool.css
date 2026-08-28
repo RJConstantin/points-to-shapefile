@@ -57,6 +57,11 @@ table{border-collapse:collapse;width:100%;font-size:12px}
 th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #e7ecea;white-space:nowrap;max-width:240px;overflow:hidden;text-overflow:ellipsis}
 th{position:sticky;top:0;background:#f3f6f5;color:#4a5960;font-weight:800;z-index:1}
 .note{font-size:11px;color:#718087;line-height:1.5;margin-top:10px}
+details.note .table-wrap{max-height:none;overflow-x:auto;overflow-y:visible}
+details.note table{table-layout:fixed;min-width:0}
+details.note th,details.note td{white-space:normal;max-width:none;overflow:visible;text-overflow:clip;vertical-align:top;line-height:1.5;word-break:normal;overflow-wrap:anywhere}
+details.note th:first-child,details.note td:first-child{width:62%}
+details.note th:last-child,details.note td:last-child{width:38%}
 .divider{height:1px;background:var(--line);margin:20px 0}
 .footer{border-top:1px solid var(--line);color:#7a8792;font-size:11px;text-align:center;padding:24px}
 .privacy{display:inline-flex;align-items:center;gap:7px;color:#62747d;font-size:12px;margin-top:14px}
@@ -64,5 +69,7 @@ th{position:sticky;top:0;background:#f3f6f5;color:#4a5960;font-weight:800;z-inde
 @media(max-width:800px){
   .grid,.grid-3{grid-template-columns:1fr}.field-list{grid-template-columns:repeat(2,minmax(0,1fr))}
   .hero{padding:42px 22px}.workspace{padding:30px 18px 60px}.back-link{display:none}
+  details.note th:first-child,details.note td:first-child{width:58%}
+  details.note th:last-child,details.note td:last-child{width:42%}
 }
 @media(max-width:520px){.field-list{grid-template-columns:1fr}.card{padding:18px}h1{letter-spacing:-1.3px}}
